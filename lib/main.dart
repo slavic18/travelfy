@@ -5,7 +5,8 @@ import 'package:travelfy/models/search.dart';
 import 'package:travelfy/pages/home.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
+  runApp(
+      ChangeNotifierProvider(
       create: (context) => SearchModel(), child: MyApp()));
 }
 

@@ -1,0 +1,195 @@
+{
+  "__collections__": {
+    "countries": {
+      "Belgium": {
+        "__collections__": {
+          "countries": {
+            "Luxembourg": {
+              "lastUpdate": { "__datatype__": "timestamp", "value": { "_seconds": 1602280800, "_nanoseconds": 0 } },
+              "freeMovement": true,
+              "info": "https://covid19.public.lu/en/health-protection/protective-measures.html",
+              "barStatus": "OPEN",
+              "TravelMotor": "OPEN",
+              "specialDocuments": false,
+              "socialDistance": true,
+              "mask": "LIMITED",
+              "TravelBike": "OPEN",
+              "quarantine": false,
+              "crossBorderWorker": true,
+              "hotelStatus": "OPEN",
+              "TravelPlane": "LIMITED",
+              "covidTestLink": "",
+              "TravelTrain": "OPEN",
+              "transitAllowed": "true",
+              "status": "GREEN",
+              "TravelCar": "OPEN",
+              "covidTest": false,
+              "__collections__": {}
+            }
+          }
+        }
+      },
+      "France": {
+        "quarantineDays": 1,
+        "lastUpdate": { "__datatype__": "timestamp", "value": { "_seconds": 1602280800, "_nanoseconds": 0 } },
+        "hotelStatus": "OPEN",
+        "socialDistance": true,
+        "barStatus": "OPEN",
+        "transitAllowed": true,
+        "info": "",
+        "mask": true,
+        "specialDocuments": true,
+        "freeMovement": true,
+        "covidTestLink": "",
+        "localLinks": [""],
+        "quarantine": true,
+        "crossboarderWorker": true,
+        "status": "RED",
+        "specialDocumentsLink": "",
+        "name": "",
+        "covidTest": true,
+        "__collections__": {
+          "countries": {
+            "Luxembourg": {
+              "transitAllowed": true,
+              "mask": "LIMITED",
+              "crossBorderWorker": true,
+              "lastUpdate": { "__datatype__": "timestamp", "value": { "_seconds": 1602280800, "_nanoseconds": 0 } },
+              "TravelPlane": "LIMITED",
+              "name": "Luxembourg",
+              "TravelTrain": "OPEN",
+              "barStatus": "OPEN",
+              "TravelBike": "OPEN",
+              "TravelMotor": "OPEN",
+              "TravelCar": "OPEN",
+              "socialDistance": true,
+              "covidTestLink": "",
+              "quarantine": false,
+              "status": "GREEN",
+              "specialDocuments": false,
+              "covidTest": false,
+              "info": "https://covid19.public.lu/en/health-protection/protective-measures.html",
+              "freeMovement": true,
+              "hotelStatus": "OPEN",
+              "__collections__": {}
+            }
+          }
+        }
+      },
+      "Luxembourg": {
+        "barStatus": "open",
+        "covidTestLink": "",
+        "covidTest": true,
+        "crossboarderWorker": true,
+        "__collections__": {
+          "countries": {
+            "Belgium": {
+              "quarantine": true,
+              "info": "https://diplomatie.belgium.be/en/services/travel_to_belgium",
+              "TravelCar": "OPEN",
+              "localLinks": [
+                "https://www.info-coronavirus.be/en/faq/",
+                "https://www.info-coronavirus.be/en/news/",
+                "https://www.info-coronavirus.be/en/travels/"
+              ],
+              "mask": "LIMITED",
+              "barStatus": "LIMITED",
+              "covidTestLink": "",
+              "TravelPlane": "LIMITED",
+              "status": "GREEN",
+              "freeMovement": "LIMITED",
+              "crossBorderWorker": true,
+              "specialDocuments": true,
+              "name": "Belgium",
+              "hotelStatus": "OPEN",
+              "socialDistance": true,
+              "lastUpdate": { "__datatype__": "timestamp", "value": { "_seconds": 1602280800, "_nanoseconds": 0 } },
+              "TravelMotor": "OPEN",
+              "covidTest": false,
+              "TravelBike": "OPEN",
+              "SpecialDocumentsLink": "https://travel.info-coronavirus.be/public-health-passenger-locator-form",
+              "TravelTrain": "OPEN",
+              "__collections__": {}
+            },
+            "France": {
+              "freeMovement": "LIMITED",
+              "localLinks": [""],
+              "TravelMotor": "OPEN",
+              "crossBorderWorker": true,
+              "lastUpdate": { "__datatype__": "timestamp", "value": { "_seconds": 1602280800, "_nanoseconds": 0 } },
+              "mask": "LIMITED",
+              "TravelBike": "OPEN",
+              "TravelPlane": "LIMITED",
+              "barStatus": "OPEN",
+              "hotelStatus": "OPEN",
+              "socialDistance": true,
+              "covidTest": false,
+              "quarantine": false,
+              "name": "France",
+              "TravelCar": "OPEN",
+              "status": "GREEN",
+              "covidTestLink": "",
+              "info": "https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/luxembourg/",
+              "SpecialDocuments": false,
+              "TravelTrain": "OPEN",
+              "__collections__": {}
+            },
+            "Germany": {
+              "covidTestLink": "https://www.bundesgesundheitsministerium.de/coronavirus-infos-reisende/faq-tests-entering-germany.html#c18637",
+              "localLinks": ["https://experience.arcgis.com/experience/478220a4c454480e823b17327b2bf1d4"],
+              "socialDistance": true,
+              "hotelStatus": "OPEN",
+              "name": "Germany",
+              "covidTest": false,
+              "SpecialDocuments": false,
+              "status": "RED",
+              "TravelTrain": "LIMITED",
+              "TravelPlane": "LIMITED",
+              "quarantine": true,
+              "info": "https://www.bundesgesundheitsministerium.de/coronavirus-infos-reisende.html",
+              "barStatus": "OPEN",
+              "mask": "LIMITED",
+              "TravelMotor": "CLOSED",
+              "freeMovement": "YES",
+              "lastUpdate": { "__datatype__": "timestamp", "value": { "_seconds": 1602280800, "_nanoseconds": 0 } },
+              "TravelCar": "CLOSED",
+              "crossBorderWorker": true,
+              "TravelBike": "CLOSED",
+              "__collections__": {}
+            }
+          }
+        }
+      },
+      "germany": {
+        "__collections__": {
+          "countries": {
+            "Luxembourg": {
+              "TravelBike": "OPEN",
+              "localLinks": ["https://experience.arcgis.com/experience/478220a4c454480e823b17327b2bf1d4"],
+              "TravelCar": "OPEN",
+              "status": "GREEN",
+              "hotelStatus": "OPEN",
+              "name": "Luxembourg",
+              "crossBorderWorker": true,
+              "lastUpdate": { "__datatype__": "timestamp", "value": { "_seconds": 1602280800, "_nanoseconds": 0 } },
+              "info": "https://www.bundesgesundheitsministerium.de/coronavirus-infos-reisende.html",
+              "quarantine": false,
+              "TravelPlane": "OPEN",
+              "freeMovement": true,
+              "socialDistance": true,
+              "transitAllowed": true,
+              "covidTest": true,
+              "TravelTrain": "OPEN",
+              "mask": "LIMITED",
+              "TravelMotor": "OPEN",
+              "covidTestLink": "https://www.bundesgesundheitsministerium.de/coronavirus-infos-reisende/faq-tests-entering-germany.html#c18637",
+              "barStatus": "OPEN",
+              "specialDocuments": false,
+              "__collections__": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
