@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_rounded_date_picker/rounded_picker.dart';
 import 'package:travelfy/models/search.dart';
+import 'package:travelfy/pages/searchResult.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:fdottedline/fdottedline.dart';
@@ -66,7 +67,16 @@ class SearchPage extends StatelessWidget {
                 )),
 
             // date row
-            SearchDateInput(),
+            Row(
+              children: [
+                new SearchDateInput(
+                    label: "From", type: SearchDateInput.TYPE_FROM),
+                Spacer(flex: 1),
+                new SearchDateInput(
+                    label: "Until", type: SearchDateInput.TYPE_TO),
+              ],
+            ),
+
             // finish date block
             Padding(
               padding: EdgeInsets.only(top: 44, bottom: 10),
@@ -120,17 +130,21 @@ class SearchPage extends StatelessWidget {
 }
 
 class SearchDateInput extends StatelessWidget {
+  static String TYPE_FROM = 'from';
+  static String TYPE_TO = 'to';
+
+  SearchDateInput({Key key, this.label, this.type}) : super(key: key);
+
+  final String type;
+  final String label;
+
   @override
   Widget build(BuildContext context) {
     Widget calendarIcon = SvgPicture.asset("images/calendar.svg",
         semanticsLabel: 'calendarIcon ');
 
-
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
-
-
-
 
     return Consumer<SearchModel>(
         builder: (context, search, child) => InkWell(
@@ -138,10 +152,10 @@ class SearchDateInput extends StatelessWidget {
               DateTime newDateTime = await showRoundedDatePicker(
                   context: context,
                   theme: ThemeData(primarySwatch: Colors.blue),
-                  initialDate: search.getDate(),
+                  initialDate: search.getDate(type),
                   onTapDay: (DateTime dateTime, bool available) {
                     if (!available) {}
-                    search.setDate(dateTime);
+                    search.setDate(dateTime, type);
 
                     return available;
                   });
@@ -154,7 +168,7 @@ class SearchDateInput extends StatelessWidget {
                     child: Container(
                       height: 20,
                       color: Colors.white,
-                      child: Text("When?",
+                      child: Text(label,
                           style: TextStyle(backgroundColor: Colors.white)),
                     )),
                 Padding(
@@ -162,8 +176,8 @@ class SearchDateInput extends StatelessWidget {
                   child: Row(children: [
                     Container(
                       constraints: BoxConstraints(
-                        maxWidth: 350.0,
-                        minWidth: 270.0,
+                        maxWidth: 170.0,
+                        minWidth: 170.0,
                       ),
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -187,7 +201,14 @@ class SearchDateInput extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                            DateTime(search.getDate().year, search.getDate().month, search.getDate().day) == today ? "Today" : DateFormat('yyyy/MM/dd').format(search.getDate()),
+                              DateTime(
+                                          search.getDate(type).year,
+                                          search.getDate(type).month,
+                                          search.getDate(type).day) ==
+                                      today
+                                  ? "Today"
+                                  : DateFormat('yyyy/MM/dd')
+                                      .format(search.getDate(type)),
                               style: TextStyle(
                                   fontSize: 16,
                                   fontFamily: "roboto",
@@ -616,6 +637,14 @@ class SearchFooterButtons extends StatelessWidget {
                         // Find the Scaffold in the widget tree and use
                         // it to show a SnackBar.
                         Scaffold.of(context).showSnackBar(snackBar);
+                      } else {
+                        // no errors found during validation
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => searchResult(),
+                          ),
+                        );
                       }
                     },
                     shape: RoundedRectangleBorder(
