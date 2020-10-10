@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "75957390116",
+    "firebase_url": "https://travelfy-c43ff.firebaseio.com",
+    "project_id": "travelfy-c43ff",
+    "storage_bucket": "travelfy-c43ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75957390116:android:266e3792a13a98f94041b1",
+        "android_client_info": {
+          "package_name": "com.gromperekichelcher.travelfy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75957390116-qh8671uk2tql4q50spb9rpq3h21mlabj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ299f4N9lDT2iqRA8bRd-HFw56HygW8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75957390116-qh8671uk2tql4q50spb9rpq3h21mlabj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
