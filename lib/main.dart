@@ -71,38 +71,41 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
+    AssetImage pizzaAsset = AssetImage('images/logo.png');
+    Image image = Image(image: pizzaAsset, width: 111, height: 36);
+
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Padding(
+        padding: EdgeInsets.only(left: 24, right: 24),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Padding(
+              padding: EdgeInsets.only(top: 44),
+              child: image,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Expanded(
+              child: Container(
+                color: Colors.amber,
+                child: Padding(
+                    padding: EdgeInsets.only(top: 144),
+                    child: Container(
+                      color: Colors.lightGreen,
+                      child: Column(
+                        children: [
+                          Text(
+                            'Start with your\nhealth in mind.',
+                            style: TextStyle(fontSize: 36, fontFamily: 'inter', fontWeight: FontWeight.w700, color:Color.fromRGBO(43, 33, 62, 1) ),
+                          )
+                        ],
+                      ),
+                    )),
+              ),
+            ),
+            Container(
+              color: Colors.blue,
+              height: 144,
             ),
           ],
         ),
@@ -115,3 +118,33 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+// Center(
+// // Center is a layout widget. It takes a single child and positions it
+// // in the middle of the parent.
+// child: Column(
+// // Column is also a layout widget. It takes a list of children and
+// // arranges them vertically. By default, it sizes itself to fit its
+// // children horizontally, and tries to be as tall as its parent.
+// //
+// // Invoke "debug painting" (press "p" in the console, choose the
+// // "Toggle Debug Paint" action from the Flutter Inspector in Android
+// // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+// // to see the wireframe for each widget.
+// //
+// // Column has various properties to control how it sizes itself and
+// // how it positions its children. Here we use mainAxisAlignment to
+// // center the children vertically; the main axis here is the vertical
+// // axis because Columns are vertical (the cross axis would be
+// // horizontal).
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: <Widget>[
+// image,
+// Text(
+// 'You have pushed the button this m22313a2ny times:',
+// ),
+// Text(
+// '$_counter',
+// style: Theme.of(context).textTheme.headline4,
+// ),
+// ],
