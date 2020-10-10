@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:travelfy/models/search.dart';
 import 'package:travelfy/pages/search.dart';
 import 'package:travelfy/pages/searchResult.dart';
 
@@ -79,131 +81,139 @@ class HomePage extends StatelessWidget {
           Container(
             height: 144,
             color: Color.fromRGBO(98, 29, 238, 0.08),
-            child: InkWell(
-              onTap: () => {
-                // routing to search page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SearchPage(),
-                  ),
-                ),
-              },
-              child: Padding(
-                padding: EdgeInsets.only(left: 24, right: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 20, bottom: 12),
-                      child: Row(
-                        children: <Widget>[
-                          calendarIcon,
-                          Padding(
-                              padding: EdgeInsets.only(left: 12.5, right: 11),
-                              child: Text(
-                                "On",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: "inter",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color.fromRGBO(112, 112, 112, 1)),
-                              )),
-                          Text(
-                            "Today",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "inter",
-                                fontWeight: FontWeight.w700,
-                                color: Color.fromRGBO(98, 29, 238, 1)),
-                          )
-                        ],
-                      ),
+            child: Consumer<SearchModel>(
+              builder: (context, search, child) => InkWell(
+                onTap: () {
+                  // routing to search page
+                  search.removeAll();
+                  search.add(new SearchItem("Luxembourg", "initial"));
+                  search.add(new SearchItem("", "destination"));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SearchPage(),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 7),
-                      child: Row(
-                        children: <Widget>[
-                          startIcon,
-                          Padding(
-                              padding: EdgeInsets.only(left: 12.5, right: 11),
-                              child: Text(
-                                "From",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: "inter",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color.fromRGBO(112, 112, 112, 1)),
-                              )),
-                          Text(
-                            "Luxembourg",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "inter",
-                                fontWeight: FontWeight.w700,
-                                color: Color.fromRGBO(98, 29, 238, 1)),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.only(bottom: 7),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(left: 24, right: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 20, bottom: 12),
                         child: Row(
                           children: <Widget>[
-                            destinationIcon,
+                            calendarIcon,
                             Padding(
                                 padding: EdgeInsets.only(left: 12.5, right: 11),
                                 child: Text(
-                                  "To",
+                                  "On",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontFamily: "inter",
                                       fontWeight: FontWeight.w500,
                                       color: Color.fromRGBO(112, 112, 112, 1)),
                                 )),
-                            Container(
-                                width: 260,
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
-                                    border: Border(
-                                        top: BorderSide(
-                                            width: 1.0,
-                                            color:
-                                                Color.fromRGBO(0, 0, 0, 0.12)),
-                                        left: BorderSide(
-                                            width: 1.0,
-                                            color:
-                                                Color.fromRGBO(0, 0, 0, 0.12)),
-                                        right: BorderSide(
-                                            width: 1.0,
-                                            color:
-                                                Color.fromRGBO(0, 0, 0, 0.12)),
-                                        bottom: BorderSide(
-                                            width: 1.0,
-                                            color: Color.fromRGBO(
-                                                0, 0, 0, 0.12)))),
-                                child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 16,
-                                        right: 16,
-                                        top: 15,
-                                        bottom: 14),
-                                    child: Text(
-                                      "Destination",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: "roboto",
-                                          fontWeight: FontWeight.w400,
-                                          color: Color.fromRGBO(0, 0, 0, 0.6)),
-                                    )))
+                            Text(
+                              "Today",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: "inter",
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromRGBO(98, 29, 238, 1)),
+                            )
                           ],
-                        ))
-                  ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 7),
+                        child: Row(
+                          children: <Widget>[
+                            startIcon,
+                            Padding(
+                                padding: EdgeInsets.only(left: 12.5, right: 11),
+                                child: Text(
+                                  "From",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: "inter",
+                                      fontWeight: FontWeight.w500,
+                                      color: Color.fromRGBO(112, 112, 112, 1)),
+                                )),
+                            Text(
+                              "Luxembourg",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: "inter",
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromRGBO(98, 29, 238, 1)),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(bottom: 7),
+                          child: Row(
+                            children: <Widget>[
+                              destinationIcon,
+                              Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 12.5, right: 11),
+                                  child: Text(
+                                    "To",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: "inter",
+                                        fontWeight: FontWeight.w500,
+                                        color:
+                                            Color.fromRGBO(112, 112, 112, 1)),
+                                  )),
+                              Container(
+                                  width: 260,
+                                  decoration: const BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)),
+                                      border: Border(
+                                          top: BorderSide(
+                                              width: 1.0,
+                                              color: Color.fromRGBO(
+                                                  0, 0, 0, 0.12)),
+                                          left: BorderSide(
+                                              width: 1.0,
+                                              color: Color.fromRGBO(
+                                                  0, 0, 0, 0.12)),
+                                          right: BorderSide(
+                                              width: 1.0,
+                                              color: Color.fromRGBO(
+                                                  0, 0, 0, 0.12)),
+                                          bottom: BorderSide(
+                                              width: 1.0,
+                                              color: Color.fromRGBO(
+                                                  0, 0, 0, 0.12)))),
+                                  child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 16,
+                                          right: 16,
+                                          top: 15,
+                                          bottom: 14),
+                                      child: Text(
+                                        "Destination",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: "roboto",
+                                            fontWeight: FontWeight.w400,
+                                            color:
+                                                Color.fromRGBO(0, 0, 0, 0.6)),
+                                      )))
+                            ],
+                          ))
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );

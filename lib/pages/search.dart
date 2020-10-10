@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_rounded_date_picker/rounded_picker.dart';
-import 'package:smart_select/smart_select.dart';
 import 'package:travelfy/models/search.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:fdottedline/fdottedline.dart';
+import 'package:intl/intl.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({Key key, this.title}) : super(key: key);
@@ -15,24 +14,14 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AssetImage logoAsset = AssetImage('images/logo.png');
-    Image image = Image(image: logoAsset, width: 111, height: 36);
-
     Widget destinationIcon = SvgPicture.asset("images/destination.svg",
         semanticsLabel: 'destinationIcon ');
-    Widget calendarIcon = SvgPicture.asset("images/calendar.svg",
-        semanticsLabel: 'calendarIcon ');
+
     Widget startIcon =
         SvgPicture.asset("images/start.svg", semanticsLabel: 'calendarIcon ');
     Widget closeIcon = SvgPicture.asset("images/icon-close.svg",
         semanticsLabel: 'calendarIcon ');
-    String value = 'flutter';
 
-    // List<S2Choice<String>> options = [
-    //   S2Choice<String>(value: 'ion', title: 'Ionic'),
-    //   S2Choice<String>(value: 'flu', title: 'Flutter'),
-    //   S2Choice<String>(value: 'rea', title: 'React Native'),
-    // ];
     List countriesOptions = [
       'Select a country',
       'Luxembourg',
@@ -77,71 +66,7 @@ class SearchPage extends StatelessWidget {
                 )),
 
             // date row
-            InkWell(
-                onTap: () async {
-                  DateTime newDateTime = await showRoundedDatePicker(
-                    context: context,
-                    theme: ThemeData(primarySwatch: Colors.blue),
-                  );
-                },
-                child: Stack(
-                  children: [
-                    Positioned(
-                        top: 15,
-                        left: 20,
-                        child: Container(
-                          height: 20,
-                          color: Colors.white,
-                          child: Text("When?",
-                              style: TextStyle(backgroundColor: Colors.white)),
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(top: 24),
-                      child: Row(children: [
-                        Container(
-                          constraints: BoxConstraints(
-                            maxWidth: 350.0,
-                            minWidth: 270.0,
-                          ),
-                          decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                              border: Border(
-                                  top: BorderSide(
-                                      width: 1.0,
-                                      color: Color.fromRGBO(0, 0, 0, 0.12)),
-                                  left: BorderSide(
-                                      width: 1.0,
-                                      color: Color.fromRGBO(0, 0, 0, 0.12)),
-                                  right: BorderSide(
-                                      width: 1.0,
-                                      color: Color.fromRGBO(0, 0, 0, 0.12)),
-                                  bottom: BorderSide(
-                                      width: 1.0,
-                                      color: Color.fromRGBO(0, 0, 0, 0.12)))),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 16, right: 16, top: 15, bottom: 14),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Today",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: "roboto",
-                                      fontWeight: FontWeight.w400,
-                                      color: Color.fromRGBO(0, 0, 0, 0.6)),
-                                ),
-                                calendarIcon
-                              ],
-                            ),
-                          ),
-                        ),
-                      ]),
-                    ),
-                  ],
-                )),
+            SearchDateInput(),
             // finish date block
             Padding(
               padding: EdgeInsets.only(top: 44, bottom: 10),
@@ -165,163 +90,26 @@ class SearchPage extends StatelessWidget {
                 )
               ]),
             ),
+            // list of countries
+            Consumer<SearchModel>(builder: (context, search, child) {
+              List<SearchItem> items = search.getItems();
+              return Expanded(
+                  child: new ListView.builder(
+                      itemCount: search.getItems().length,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        SearchItem item = items[index];
+                        return new SearchInput(
+                            index: index,
+                            country: item.country,
+                            type: item.type);
+                      }));
+            }),
+            // end list of countries
+
             Column(
               children: [
-                // list of countries
-                Row(
-                  children: [
-                    startIcon,
-                    Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Container(
-                            constraints: BoxConstraints(
-                              maxWidth: 320.0,
-                              minWidth: 250.0,
-                            ),
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                border: Border(
-                                    top: BorderSide(
-                                        width: 1.0,
-                                        color: Color.fromRGBO(0, 0, 0, 0.12)),
-                                    left: BorderSide(
-                                        width: 1.0,
-                                        color: Color.fromRGBO(0, 0, 0, 0.12)),
-                                    right: BorderSide(
-                                        width: 1.0,
-                                        color: Color.fromRGBO(0, 0, 0, 0.12)),
-                                    bottom: BorderSide(
-                                        width: 1.0,
-                                        color: Color.fromRGBO(0, 0, 0, 0.12)))),
-                            child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: 10, right: 1, top: 0, bottom: 0),
-                                child: Row(children: [
-                                  Expanded(
-                                      child: Consumer<SearchModel>(
-                                          builder: (context, search, child) =>
-                                              Stack(children: [
-                                                new DropdownButton<String>(
-                                                  items: countriesOptions,
-                                                  isExpanded: true,
-                                                  onChanged: (_) {},
-                                                  value: "Select a country",
-                                                  elevation: 16,
-                                                  style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: Color.fromRGBO(
-                                                          0, 0, 0, 0.74)),
-                                                  underline: Container(
-                                                    height: 2,
-                                                    color: Colors.white,
-                                                  ),
-                                                  icon: null,
-                                                ),
-                                                // SmartSelect<String>.single(
-                                                //     title: '',
-                                                //     value: value,
-                                                //     placeholder: "Select a country",
-                                                //     choiceItems: options,
-                                                //     onChange: (state) =>
-                                                //         search.setDestination(
-                                                //             state.value))
-                                              ])))
-                                ]))))
-                  ],
-                ),
-                Stack(children: [
-                  Positioned(
-                      top: 0,
-                      left: 10,
-                      child: FDottedLine(
-                        color: Colors.black,
-                        height: 25.0,
-                        strokeWidth: 1.0,
-                        dottedLength: 1.0,
-                        space: 4.0,
-                      )),
-                  Padding(
-                      padding: EdgeInsets.only(top: 15),
-                      child: Row(
-                        children: [
-                          destinationIcon,
-                          Padding(
-                              padding: EdgeInsets.only(left: 10, right: 10),
-                              child: Container(
-                                  constraints: BoxConstraints(
-                                    maxWidth: 320.0,
-                                    minWidth: 250.0,
-                                  ),
-                                  decoration: const BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border: Border(
-                                          top: BorderSide(
-                                              width: 1.0,
-                                              color: Color.fromRGBO(
-                                                  0, 0, 0, 0.12)),
-                                          left: BorderSide(
-                                              width: 1.0,
-                                              color: Color.fromRGBO(
-                                                  0, 0, 0, 0.12)),
-                                          right: BorderSide(
-                                              width: 1.0,
-                                              color: Color.fromRGBO(
-                                                  0, 0, 0, 0.12)),
-                                          bottom: BorderSide(
-                                              width: 1.0,
-                                              color: Color.fromRGBO(
-                                                  0, 0, 0, 0.12)))),
-                                  child: Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 10,
-                                          right: 1,
-                                          top: 0,
-                                          bottom: 0),
-                                      child: Row(children: [
-                                        Expanded(
-                                            child: Consumer<SearchModel>(
-                                                builder: (context, search,
-                                                        child) =>
-                                                    Stack(children: [
-                                                      new DropdownButton<
-                                                          String>(
-                                                        items: countriesOptions,
-                                                        isExpanded: true,
-                                                        onChanged: (_) {},
-                                                        value:
-                                                            "Select a country",
-                                                        elevation: 16,
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    0,
-                                                                    0,
-                                                                    0,
-                                                                    0.74)),
-                                                        underline: Container(
-                                                          height: 2,
-                                                          color: Colors.white,
-                                                        ),
-                                                        icon: null,
-                                                      ),
-                                                      // SmartSelect<String>.single(
-                                                      //     title: '',
-                                                      //     value: value,
-                                                      //     placeholder: "Select a country",
-                                                      //     choiceItems: options,
-                                                      //     onChange: (state) =>
-                                                      //         search.setDestination(
-                                                      //             state.value))
-                                                    ])))
-                                      ]))))
-                        ],
-                      )),
-                ]),
                 SearchFooterButtons(),
-                // end list of countries
               ],
             ),
           ],
@@ -334,14 +122,428 @@ class SearchPage extends StatelessWidget {
 class SearchDateInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text("123");
+    Widget calendarIcon = SvgPicture.asset("images/calendar.svg",
+        semanticsLabel: 'calendarIcon ');
+
+
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
+
+
+
+    return Consumer<SearchModel>(
+        builder: (context, search, child) => InkWell(
+            onTap: () async {
+              DateTime newDateTime = await showRoundedDatePicker(
+                  context: context,
+                  theme: ThemeData(primarySwatch: Colors.blue),
+                  initialDate: search.getDate(),
+                  onTapDay: (DateTime dateTime, bool available) {
+                    if (!available) {}
+                    search.setDate(dateTime);
+
+                    return available;
+                  });
+            },
+            child: Stack(
+              children: [
+                Positioned(
+                    top: 15,
+                    left: 20,
+                    child: Container(
+                      height: 20,
+                      color: Colors.white,
+                      child: Text("When?",
+                          style: TextStyle(backgroundColor: Colors.white)),
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(top: 24),
+                  child: Row(children: [
+                    Container(
+                      constraints: BoxConstraints(
+                        maxWidth: 350.0,
+                        minWidth: 270.0,
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          border: Border(
+                              top: BorderSide(
+                                  width: 1.0,
+                                  color: Color.fromRGBO(0, 0, 0, 0.12)),
+                              left: BorderSide(
+                                  width: 1.0,
+                                  color: Color.fromRGBO(0, 0, 0, 0.12)),
+                              right: BorderSide(
+                                  width: 1.0,
+                                  color: Color.fromRGBO(0, 0, 0, 0.12)),
+                              bottom: BorderSide(
+                                  width: 1.0,
+                                  color: Color.fromRGBO(0, 0, 0, 0.12)))),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: 16, right: 16, top: 15, bottom: 14),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                            DateTime(search.getDate().year, search.getDate().month, search.getDate().day) == today ? "Today" : DateFormat('yyyy/MM/dd').format(search.getDate()),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: "roboto",
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(0, 0, 0, 0.6)),
+                            ),
+                            calendarIcon
+                          ],
+                        ),
+                      ),
+                    ),
+                  ]),
+                ),
+              ],
+            )));
   }
 }
 
-class SearchInputInput extends StatelessWidget {
+class SearchInput extends StatelessWidget {
+  SearchInput({Key key, this.type, this.index, this.country}) : super(key: key);
+
+  final String type;
+  final int index;
+  final String country;
+
   @override
   Widget build(BuildContext context) {
-    return Text("123");
+    Widget destinationIcon = SvgPicture.asset("images/destination.svg",
+        semanticsLabel: 'destinationIcon ');
+    Widget destinationBlackIcon = SvgPicture.asset("images/destination.svg",
+        color: Colors.black, semanticsLabel: 'destinationIcon ');
+
+    Widget startIcon =
+        SvgPicture.asset("images/start.svg", semanticsLabel: 'calendarIcon ');
+
+    List countriesOptions = [
+      'Select a country',
+      'Luxembourg',
+      'Germany',
+      'France',
+      'Belgium',
+      'Italy'
+    ].map((String value) {
+      return new DropdownMenuItem<String>(
+        value: value,
+        child: new Text(value),
+      );
+    }).toList();
+
+    String selectedCountry = country == "" ? "Select a country" : country;
+    return Column(children: [
+      type == "initial"
+          ? Row(
+              children: [
+                startIcon,
+                Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10),
+                    child: Container(
+                        constraints: BoxConstraints(
+                          maxWidth: 320.0,
+                          minWidth: 250.0,
+                        ),
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            border: Border(
+                                top: BorderSide(
+                                    width: 1.0,
+                                    color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                left: BorderSide(
+                                    width: 1.0,
+                                    color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                right: BorderSide(
+                                    width: 1.0,
+                                    color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                bottom: BorderSide(
+                                    width: 1.0,
+                                    color: Color.fromRGBO(0, 0, 0, 0.12)))),
+                        child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 10, right: 1, top: 0, bottom: 0),
+                            child: Row(children: [
+                              Expanded(
+                                  child: Consumer<SearchModel>(
+                                      builder: (context, search, child) =>
+                                          Stack(children: [
+                                            new DropdownButton<String>(
+                                              items: countriesOptions,
+                                              isExpanded: true,
+                                              onChanged: (state) {
+                                                search.setCountry(state, index);
+                                              },
+                                              value: selectedCountry,
+                                              elevation: 16,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Color.fromRGBO(
+                                                      0, 0, 0, 0.74)),
+                                              underline: Container(
+                                                height: 2,
+                                                color: Colors.white,
+                                              ),
+                                              icon: null,
+                                            ),
+                                          ])))
+                            ]))))
+              ],
+            )
+          : SizedBox.shrink(),
+      type == "stop"
+          ? Stack(children: [
+              Positioned(
+                  top: 0,
+                  left: 10,
+                  child: FDottedLine(
+                    color: Colors.black,
+                    height: 25.0,
+                    strokeWidth: 1.0,
+                    dottedLength: 1.0,
+                    space: 4.0,
+                  )),
+              Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Row(
+                    children: [
+                      destinationBlackIcon,
+                      Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: 290.0,
+                                minWidth: 250.0,
+                              ),
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  border: Border(
+                                      top: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      left: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      right: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      bottom: BorderSide(
+                                          width: 1.0,
+                                          color:
+                                              Color.fromRGBO(0, 0, 0, 0.12)))),
+                              child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 10, right: 1, top: 0, bottom: 0),
+                                  child: Row(children: [
+                                    Expanded(
+                                        child: Consumer<SearchModel>(
+                                            builder: (context, search, child) =>
+                                                Stack(children: [
+                                                  new DropdownButton<String>(
+                                                    items: countriesOptions,
+                                                    isExpanded: true,
+                                                    onChanged: (state) {
+                                                      search.setCountry(
+                                                          state, index);
+                                                    },
+                                                    value: selectedCountry,
+                                                    elevation: 16,
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.74)),
+                                                    underline: Container(
+                                                      height: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                                    icon: null,
+                                                  ),
+                                                ])))
+                                  ])))),
+                      new DeleteSearchItemButton(index: this.index),
+                    ],
+                  )),
+            ])
+          : SizedBox.shrink(),
+      type == "transit"
+          ? Stack(children: [
+              Positioned(
+                  top: 0,
+                  left: 10,
+                  child: FDottedLine(
+                    color: Colors.black,
+                    height: 25.0,
+                    strokeWidth: 1.0,
+                    dottedLength: 1.0,
+                    space: 4.0,
+                  )),
+              Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Row(
+                    children: [
+                      destinationBlackIcon,
+                      Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: 290.0,
+                                minWidth: 250.0,
+                              ),
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  border: Border(
+                                      top: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      left: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      right: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      bottom: BorderSide(
+                                          width: 1.0,
+                                          color:
+                                              Color.fromRGBO(0, 0, 0, 0.12)))),
+                              child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 10, right: 1, top: 0, bottom: 0),
+                                  child: Row(children: [
+                                    Expanded(
+                                        child: Consumer<SearchModel>(
+                                            builder: (context, search, child) =>
+                                                Stack(children: [
+                                                  new DropdownButton<String>(
+                                                    items: countriesOptions,
+                                                    isExpanded: true,
+                                                    onChanged: (state) {
+                                                      search.setCountry(
+                                                          state, index);
+                                                    },
+                                                    value: selectedCountry,
+                                                    elevation: 16,
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.74)),
+                                                    underline: Container(
+                                                      height: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                                    icon: null,
+                                                  ),
+                                                ])))
+                                  ])))),
+                      new DeleteSearchItemButton(index: this.index),
+                    ],
+                  )),
+            ])
+          : SizedBox.shrink(),
+      type == "destination"
+          ? Stack(children: [
+              Positioned(
+                  top: 0,
+                  left: 10,
+                  child: FDottedLine(
+                    color: Colors.black,
+                    height: 25.0,
+                    strokeWidth: 1.0,
+                    dottedLength: 1.0,
+                    space: 4.0,
+                  )),
+              Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Row(
+                    children: [
+                      destinationIcon,
+                      Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: 320.0,
+                                minWidth: 250.0,
+                              ),
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  border: Border(
+                                      top: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      left: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      right: BorderSide(
+                                          width: 1.0,
+                                          color: Color.fromRGBO(0, 0, 0, 0.12)),
+                                      bottom: BorderSide(
+                                          width: 1.0,
+                                          color:
+                                              Color.fromRGBO(0, 0, 0, 0.12)))),
+                              child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 10, right: 1, top: 0, bottom: 0),
+                                  child: Row(children: [
+                                    Expanded(
+                                        child: Consumer<SearchModel>(
+                                            builder: (context, search, child) =>
+                                                Stack(children: [
+                                                  new DropdownButton<String>(
+                                                    items: countriesOptions,
+                                                    isExpanded: true,
+                                                    onChanged: (state) {
+                                                      search.setCountry(
+                                                          state, this.index);
+                                                    },
+                                                    value: selectedCountry,
+                                                    elevation: 16,
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.74)),
+                                                    underline: Container(
+                                                      height: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                                    icon: null,
+                                                  ),
+                                                ])))
+                                  ]))))
+                    ],
+                  )),
+            ])
+          : SizedBox.shrink(),
+    ]);
+  }
+}
+
+class DeleteSearchItemButton extends StatelessWidget {
+  DeleteSearchItemButton({
+    Key key,
+    this.index,
+  }) : super(key: key);
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget closeIcon = SvgPicture.asset("images/icon-close.svg",
+        semanticsLabel: 'calendarIcon ');
+    return Consumer<SearchModel>(
+        builder: (context, search, child) => InkWell(
+            onTap: () {
+              search.deleteItem(index);
+            },
+            child: Container(
+              child: closeIcon,
+            )));
   }
 }
 
@@ -349,37 +551,94 @@ class SearchFooterButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 40),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FlatButton(
-            onPressed: null,
-            shape: RoundedRectangleBorder(
-                side: BorderSide(
-                    color: Colors.black26, width: 1, style: BorderStyle.solid),
-                borderRadius: BorderRadius.circular(50)),
-            child: Text(
-              "Add Stop",
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.87), fontSize: 14.0),
-            ),
+        padding: EdgeInsets.only(left: 40, top: 20, bottom: 27, right: 17),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(right: 10, bottom: 10),
+                child: Consumer<SearchModel>(builder: (context, search, child) {
+                  return FlatButton(
+                    onPressed: () {
+                      search.addStop(new SearchItem("", "stop"));
+                    },
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                            color: Colors.black26,
+                            width: 1,
+                            style: BorderStyle.solid),
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Text(
+                      "Add Stop",
+                      style: TextStyle(
+                          color: Color.fromRGBO(0, 0, 0, 0.87), fontSize: 14.0),
+                    ),
+                  );
+                }),
+              ),
+              Consumer<SearchModel>(builder: (context, search, child) {
+                return FlatButton(
+                  onPressed: () {
+                    search.addStop(new SearchItem("", "transit"));
+                  },
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          color: Colors.black26,
+                          width: 1,
+                          style: BorderStyle.solid),
+                      borderRadius: BorderRadius.circular(50)),
+                  child: Text(
+                    "Add Transit",
+                    style: TextStyle(
+                        color: Color.fromRGBO(0, 0, 0, 0.87), fontSize: 14.0),
+                  ),
+                  color: Colors.transparent,
+                );
+              }),
+            ],
           ),
-          FlatButton(
-            onPressed: null,
-            shape: RoundedRectangleBorder(
-                side: BorderSide(
-                    color: Colors.black26, width: 1, style: BorderStyle.solid),
-                borderRadius: BorderRadius.circular(50)),
-            child: Text(
-              "Add Transit",
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.87), fontSize: 14.0),
-            ),
-            color: Colors.blue,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Consumer<SearchModel>(builder: (context, search, child) {
+                  return FlatButton(
+                    height: 40,
+                    onPressed: () {
+                      List<String> errors = search.getErrors();
+                      if (errors.length != 0) {
+                        final snackBar = SnackBar(
+                          content: Text(errors[0]),
+                          duration: Duration(seconds: 1),
+                        );
+
+                        // Find the Scaffold in the widget tree and use
+                        // it to show a SnackBar.
+                        Scaffold.of(context).showSnackBar(snackBar);
+                      }
+                    },
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                            color: Colors.black26,
+                            width: 1,
+                            style: BorderStyle.solid),
+                        borderRadius: BorderRadius.circular(3)),
+                    child: Text(
+                      "LETZ GO",
+                      style: TextStyle(
+                          fontFamily: "roboto",
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          fontSize: 14.0),
+                    ),
+                    color: Color.fromRGBO(98, 0, 238, 1),
+                    focusColor: Color.fromRGBO(98, 0, 238, 1),
+                  );
+                }),
+              )
+            ],
           )
-        ],
-      ),
-    );
+        ]));
   }
 }
