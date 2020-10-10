@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/foundation.dart';
 import 'package:travelfy/pages/search.dart';
+import 'package:travelfy/pages/searchResult.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -55,7 +56,21 @@ class HomePage extends StatelessWidget {
                                 fontFamily: 'inter',
                                 color: Color.fromRGBO(42, 37, 52, 1)),
                           ),
-                        )
+                        ),
+                        //REMOVE LATER_______________________
+                        InkWell(
+                          child: Text("test"),
+                          onTap: () => {
+                            // routing to search page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => searchResult(),
+                              ),
+                            ),
+                          },
+                        ),
+                        //REMOVE LATER_____________________________
                       ],
                     ),
                   )),

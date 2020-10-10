@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:travelfy/pages/home.dart';
-import 'package:travelfy/models/search.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_rounded_date_picker/rounded_picker.dart';
-
+import 'package:provider/provider.dart';
+import 'package:travelfy/models/search.dart';
+import 'package:travelfy/pages/home.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-      create: (context) => SearchModel(),
-      child: MyApp()));
+      create: (context) => SearchModel(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
