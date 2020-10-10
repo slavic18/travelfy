@@ -11,6 +11,7 @@ class SearchItem {
 class SearchModel extends ChangeNotifier {
   /// Internal, private state of the cart.
    DateTime _date = new DateTime.now();
+   DateTime _dateTo = new DateTime.now();
 
   final List<SearchItem> _items = [];
 
@@ -26,8 +27,12 @@ class SearchModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  DateTime getDate(){
-    return this._date;
+  DateTime getDate(type){
+    if(type == "from") {
+      return this._date;
+    }else {
+      return this._dateTo;
+    }
   }
 
   void addStop(SearchItem item) {
@@ -38,24 +43,53 @@ class SearchModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  String getDestination(){
+    return _items.last.country;
+  }
+
+
+  String getFrom(){
+    return _items[0].country;
+  }
+
+  List<String> getStops(){
+    List<String> stops = [];
+
+    _items.forEach((element) {
+
+      if(element.type == "stop" || element.type == "transit" ) {
+        stops.add(element.country);
+      }
+    });
+
+    print(stops);
+
+
+    return stops;
+  }
+
+
+
   void setDestination(String destination) {
     // _items.add(item);
     print(destination);
     // This call tells the widgets that are listening to this model to rebuild.
     notifyListeners();
   }
-  void setDate(DateTime dateTime) {
-    // _items.add(item);
-     this._date = dateTime;
+  void setDate(DateTime dateTime, type) {
+
+    if(type == "from") {
+      this._date = dateTime;
+    }
+    if(type == "to") {
+      this._dateTo = dateTime;
+    }
     // This call tells the widgets that are listening to this model to rebuild.
     notifyListeners();
   }
+
   void setCountry(String country, int index) {
     this._items.elementAt(index).country = country;
-
-    print("_____ " + _items.elementAt(index).country);
-    print("_____ " + _items.elementAt(index).type);
-    print( index);
     // This call tells the widgets that are listening to this model to rebuild.
     notifyListeners();
   }
@@ -68,11 +102,13 @@ class SearchModel extends ChangeNotifier {
   List<String> getErrors(){
     List<String> errors = [];
 
-
     for(int i = 0; i < _items.length;i++) {
-      if(_items[i].country == "") {
+      if(_items[i].country == "" || _items[i].country == "Select a country") {
         errors.add("Please select countries for all fields");
       }
+    }
+    if(_date.compareTo(_dateTo) > 0) {
+      errors.add("Please select a correct date");
     }
     return errors;
 
