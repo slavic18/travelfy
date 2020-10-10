@@ -11,16 +11,32 @@ class iCanTravelBy extends StatelessWidget {
           child: Text(
             "I can travel by",
             style: TextStyle(
-                color: Color.fromRGBO(112, 112, 112, 1),
-                fontSize: 14,
-                fontFamily: "Inter",
-                fontWeight: FontWeight.w600),
+              fontSize: 14,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
+        SizedBox(
+          height: 5,
+        ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image(
               image: AssetImage('images/AIRPLAIN.png'),
+            ),
+            Image(
+              image: AssetImage('images/TRAIN.png'),
+            ),
+            Image(
+              image: AssetImage('images/CAR.png'),
+            ),
+            Image(
+              image: AssetImage('images/MOTO.png'),
+            ),
+            Image(
+              image: AssetImage('images/BIKE.png'),
             ),
           ],
         ),

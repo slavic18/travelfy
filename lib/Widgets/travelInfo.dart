@@ -23,7 +23,7 @@ class TravelInfo extends StatelessWidget {
                   style: TextStyle(
                       color: Color.fromRGBO(112, 112, 112, 1),
                       fontSize: 14,
-                      fontFamily: "Inter",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.normal),
                 ),
                 SizedBox(
@@ -34,7 +34,7 @@ class TravelInfo extends StatelessWidget {
                   style: TextStyle(
                       color: Color.fromRGBO(112, 112, 112, 1),
                       fontSize: 14,
-                      fontFamily: "Inter",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.bold),
                 ),
               ],
@@ -60,7 +60,7 @@ class TravelInfo extends StatelessWidget {
                             style: TextStyle(
                                 color: Color.fromRGBO(112, 112, 112, 1),
                                 fontSize: 14,
-                                fontFamily: "Inter",
+                                fontFamily: "Roboto",
                                 fontWeight: FontWeight.normal),
                           ),
                           SizedBox(
@@ -71,7 +71,7 @@ class TravelInfo extends StatelessWidget {
                             style: TextStyle(
                                 color: Color.fromRGBO(112, 112, 112, 1),
                                 fontSize: 14,
-                                fontFamily: "Inter",
+                                fontFamily: "Roboto",
                                 fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -85,7 +85,7 @@ class TravelInfo extends StatelessWidget {
                           style: TextStyle(
                               color: Color.fromRGBO(112, 112, 112, 1),
                               fontSize: 12,
-                              fontFamily: "Inter",
+                              fontFamily: "Roboto",
                               fontWeight: FontWeight.normal),
                         ),
                         SizedBox(
@@ -96,7 +96,7 @@ class TravelInfo extends StatelessWidget {
                           style: TextStyle(
                               color: Color.fromRGBO(112, 112, 112, 1),
                               fontSize: 12,
-                              fontFamily: "Inter",
+                              fontFamily: "Roboto",
                               fontWeight: FontWeight.bold),
                         )
                       ]),
@@ -115,7 +115,7 @@ class TravelInfo extends StatelessWidget {
                   style: TextStyle(
                       color: Color.fromRGBO(112, 112, 112, 1),
                       fontSize: 14,
-                      fontFamily: "Inter",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.normal),
                 ),
                 SizedBox(
@@ -126,7 +126,7 @@ class TravelInfo extends StatelessWidget {
                   style: TextStyle(
                       color: Color.fromRGBO(112, 112, 112, 1),
                       fontSize: 14,
-                      fontFamily: "Inter",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.bold),
                 )
               ],

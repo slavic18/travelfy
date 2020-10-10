@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:travelfy/Widgets/custom_appBar.dart';
+import 'package:travelfy/Widgets/custom_infoCard.dart';
 import 'package:travelfy/Widgets/i_can_travel_by.dart';
 import 'package:travelfy/Widgets/travelInfo.dart';
+import 'package:travelfy/data/data.dart';
 
 class searchResult extends StatelessWidget {
   @override
@@ -17,6 +19,12 @@ class searchResult extends StatelessWidget {
         children: [
           TravelInfo(),
           iCanTravelBy(),
+          infoCard(
+            regulationList: regulationGermany,
+          ),
+          infoCard(
+            regulationList: regulationLux,
+          )
         ],
       ),
     );
