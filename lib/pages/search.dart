@@ -23,7 +23,7 @@ class SearchPage extends StatelessWidget {
     Widget calendarIcon = SvgPicture.asset("images/calendar.svg",
         semanticsLabel: 'calendarIcon ');
     Widget startIcon =
-        SvgPicture.asset("images/start.svg", semanticsLabel: 'calendarIcon ');
+    SvgPicture.asset("images/start.svg", semanticsLabel: 'calendarIcon ');
     Widget closeIcon = SvgPicture.asset("images/icon-close.svg",
         semanticsLabel: 'calendarIcon ');
     String value = 'flutter';
@@ -105,7 +105,7 @@ class SearchPage extends StatelessWidget {
                           ),
                           decoration: const BoxDecoration(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
+                              BorderRadius.all(Radius.circular(5)),
                               border: Border(
                                   top: BorderSide(
                                       width: 1.0,
@@ -180,7 +180,7 @@ class SearchPage extends StatelessWidget {
                             ),
                             decoration: const BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
+                                BorderRadius.all(Radius.circular(5)),
                                 border: Border(
                                     top: BorderSide(
                                         width: 1.0,
@@ -255,7 +255,7 @@ class SearchPage extends StatelessWidget {
                                   ),
                                   decoration: const BoxDecoration(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
+                                      BorderRadius.all(Radius.circular(5)),
                                       border: Border(
                                           top: BorderSide(
                                               width: 1.0,
@@ -283,7 +283,7 @@ class SearchPage extends StatelessWidget {
                                         Expanded(
                                             child: Consumer<SearchModel>(
                                                 builder: (context, search,
-                                                        child) =>
+                                                    child) =>
                                                     Stack(children: [
                                                       new DropdownButton<
                                                           String>(
@@ -291,16 +291,16 @@ class SearchPage extends StatelessWidget {
                                                         isExpanded: true,
                                                         onChanged: (_) {},
                                                         value:
-                                                            "Select a country",
+                                                        "Select a country",
                                                         elevation: 16,
                                                         style: TextStyle(
                                                             fontSize: 16,
                                                             color:
-                                                                Color.fromRGBO(
-                                                                    0,
-                                                                    0,
-                                                                    0,
-                                                                    0.74)),
+                                                            Color.fromRGBO(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.74)),
                                                         underline: Container(
                                                           height: 2,
                                                           color: Colors.white,
@@ -349,37 +349,76 @@ class SearchFooterButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 40),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FlatButton(
-            onPressed: null,
-            shape: RoundedRectangleBorder(
-                side: BorderSide(
-                    color: Colors.black26, width: 1, style: BorderStyle.solid),
-                borderRadius: BorderRadius.circular(50)),
-            child: Text(
-              "Add Stop",
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.87), fontSize: 14.0),
-            ),
+        padding: EdgeInsets.only(left: 40, top: 20, bottom: 27, right:17),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(padding: EdgeInsets.only(right: 10, bottom: 10), child:
+
+
+              FlatButton(
+                onPressed: () {},
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        color: Colors.black26,
+                        width: 1,
+                        style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(50)),
+                child: Text(
+                  "Add Stop",
+                  style: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 0.87), fontSize: 14.0),
+                ),
+              ),
+              ),
+
+              FlatButton(
+                onPressed: () {},
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        color: Colors.black26,
+                        width: 1,
+                        style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(50)),
+                child: Text(
+                  "Add Transit",
+                  style: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 0.87), fontSize: 14.0),
+                ),
+                color: Colors.transparent,
+              )
+            ],
           ),
-          FlatButton(
-            onPressed: null,
-            shape: RoundedRectangleBorder(
-                side: BorderSide(
-                    color: Colors.black26, width: 1, style: BorderStyle.solid),
-                borderRadius: BorderRadius.circular(50)),
-            child: Text(
-              "Add Transit",
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.87), fontSize: 14.0),
-            ),
-            color: Colors.blue,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: FlatButton(
+                  height: 40,
+                  onPressed: () {},
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          color: Colors.black26,
+                          width: 1,
+                          style: BorderStyle.solid),
+                      borderRadius: BorderRadius.circular(3)),
+                  child: Text(
+                    "LETZ GO",
+                    style: TextStyle(
+                        fontFamily: "roboto",
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                        fontSize: 14.0),
+                  ),
+                  color: Color.fromRGBO(98, 0, 238, 1),
+                  focusColor: Color.fromRGBO(98, 0, 238, 1),
+                ),
+              )
+
+            ],
           )
-        ],
-      ),
-    );
+
+        ]));
   }
 }
