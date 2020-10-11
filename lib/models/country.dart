@@ -45,13 +45,13 @@ class CountryData {
         this.socialDistance});
 
   CountryData.fromJson(Map<String, dynamic> json) {
-    travelTrain = json['TravelTrain'];
-    status = json['status'];
-    crossBorderWorker = json['crossBorderWorker'];
-    travelBike = json['TravelBike'];
-    travelCar = json['TravelCar'];
+    travelTrain = json['travelTrain'];
+    status = json['status'] ;
+    crossBorderWorker =   json['crossBorderWorker'];
+    travelBike = json['travelBike'];
+    travelCar = json['travelCar'];
     hotelStatus = json['hotelStatus'];
-    travelPlane = json['TravelPlane'];
+    travelPlane = json['travelPlane'];
     specialDocuments = json['specialDocuments'];
     covidTest = json['covidTest'];
     lastUpdate = json['lastUpdate'] != null
@@ -63,7 +63,7 @@ class CountryData {
     covidTestLink = json['covidTestLink'];
     transitAllowed = json['transitAllowed'];
     barStatus = json['barStatus'];
-    travelMotor = json['TravelMotor'];
+    travelMotor = json['travelMotor'];
     name = json['name'];
     quarantine = json['quarantine'];
     info = json['info'];

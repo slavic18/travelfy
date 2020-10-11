@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelfy/assets.dart';
 
 class CustomAppBar extends StatelessWidget {
   @override
@@ -11,9 +12,7 @@ class CustomAppBar extends StatelessWidget {
       child: SafeArea(
         child: Row(
           children: [
-            Image(
-              image: AssetImage('images/logo.png'),
-            ),
+            Image.asset(Assets.travelfyLogo),
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,

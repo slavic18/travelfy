@@ -138,6 +138,17 @@ class SearchModel extends ChangeNotifier {
 
     String from = this.getFrom();
     String destination = this.getDestination();
+
+    List<String> stops = this.getStops();
+    if(stops.length > 0) {
+
+      for(int i = 0; i < stops.length; i++) {
+        if(l[from] != null && l[from]['__collections__'] != null && l[from]['__collections__']['countries']
+            != null &&  l[from]['__collections__']['countries'][destination]  != null ) {
+          countries.add(CountryData.fromJson(l[from]['__collections__']['countries'][destination]));
+        }
+      }
+    }
     print("_____1");
 
     print( l[from]['__collections__']['countries'][destination]);

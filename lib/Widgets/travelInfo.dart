@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:travelfy/models/search.dart';
-import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:travelfy/models/search.dart';
+import 'package:travelfy/models/country.dart';
+
 
 class TravelInfo extends StatelessWidget {
   @override
@@ -34,8 +36,8 @@ class TravelInfo extends StatelessWidget {
                           width: 5,
                         ),
                         Text(
-                            DateFormat('yyyy/MM/dd')
-                            .format(search.getDate("from")),
+                          DateFormat('yyyy/MM/dd')
+                              .format(search.getDate("from")),
                           style: TextStyle(
                               color: Color.fromRGBO(112, 112, 112, 1),
                               fontSize: 14,
@@ -116,34 +118,34 @@ class TravelInfo extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 25),
-                      child: ListView.builder(
-                              itemCount: search.getStops().length,
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return Row(children: [
-                                  Text(
-                                    "Passing by",
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(112, 112, 112, 1),
-                                        fontSize: 12,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.normal),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    search.getStops()[index],
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(112, 112, 112, 1),
-                                        fontSize: 12,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ]);
-                              })),
+                        padding: EdgeInsets.only(left: 25),
+                        child: ListView.builder(
+                            itemCount: search.getStops().length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return Row(children: [
+                                Text(
+                                  "Passing by",
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(112, 112, 112, 1),
+                                      fontSize: 12,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.normal),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  search.getStops()[index],
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(112, 112, 112, 1),
+                                      fontSize: 12,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ]);
+                            })),
                   ],
                 ),
               ),
