@@ -102,27 +102,55 @@ class infoCard extends StatelessWidget {
                       SizedBox(
                         height: 5,
                       ),
-                      countryData.transitAllowed == true
-                          ? Container(
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(219, 169, 1, 0.3),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(12, 6, 12, 6),
-                                child: Text(
-                                  "Transit Open",
-                                  style: TextStyle(
-                                    fontSize: 9,
-                                    fontFamily: "Roboto",
-                                    fontWeight: FontWeight.bold,
-                                  ),
+
+                      Row(
+                        children: [
+                          countryData.transitAllowed == true
+                              ? Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(219, 169, 1, 0.3),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Padding(
+                              padding:
+                              const EdgeInsets.fromLTRB(12, 6, 12, 6),
+                              child: Text(
+                                "Transit Open",
+                                style: TextStyle(
+                                  fontSize: 9,
+                                  fontFamily: "Roboto",
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            )
-                          : SizedBox.shrink(),
+                            ),
+                          )
+                              : SizedBox.shrink(),
+                          countryData.status == "RED"
+                              ? Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(195, 11, 11, 0.3),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Padding(
+                              padding:
+                              const EdgeInsets.fromLTRB(12, 6, 12, 6),
+                              child: Text(
+                                "Border closed",
+                                style: TextStyle(
+                                  fontSize: 9,
+                                  fontFamily: "Roboto",
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          )
+                              : SizedBox.shrink(),
+
+                        ],
+                      ),
+
                       SizedBox(
                         height: 10,
                       ),

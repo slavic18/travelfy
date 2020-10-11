@@ -9,6 +9,7 @@ import 'package:travelfy/pages/countries.dart';
 import 'package:provider/provider.dart';
 import 'package:travelfy/models/search.dart';
 import 'package:travelfy/models/country.dart';
+import 'package:travelfy/pages/notification.dart';
 
 class searchResult extends StatelessWidget {
   @override
@@ -30,6 +31,8 @@ class searchResult extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TravelInfo(),
+
+
                       iCanTravelBy(),
                       Expanded(
                         child: new ListView.builder(
@@ -49,6 +52,7 @@ class searchResult extends StatelessWidget {
                             }),
                       )
                     ],
+
                   );
                 } else if (snapshot.hasError) return Text(snapshot.error);
                 return Text("Await for data");

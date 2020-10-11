@@ -4,18 +4,17 @@ class notification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 0, right: 12.0),
+      padding: const EdgeInsets.only(top: 14, right: 15.0, bottom: 15),
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
 
         Column(
                   children: [
             FloatingActionButton(
               elevation: 5,
-              mini: true,
               backgroundColor: Color.fromRGBO(98, 0, 238, 1),
               child: Icon(
                 Icons.notification_important,
-                size: 20,
+                size: 40,
               ),
               onPressed: () {
                 showDialog(
