@@ -30,8 +30,6 @@ class searchResult extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TravelInfo(),
-
-
                       iCanTravelBy(),
                       Expanded(
                         child: new ListView.builder(
