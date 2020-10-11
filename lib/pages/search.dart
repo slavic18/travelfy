@@ -268,7 +268,7 @@ class SearchInput extends StatelessWidget {
                     padding: EdgeInsets.only(left: 10, right: 10),
                     child: Container(
                         constraints: BoxConstraints(
-                          maxWidth: 320.0,
+                          maxWidth: 300.0,
                           minWidth: 250.0,
                         ),
                         decoration: const BoxDecoration(
@@ -488,7 +488,7 @@ class SearchInput extends StatelessWidget {
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: Container(
                               constraints: BoxConstraints(
-                                maxWidth: 320.0,
+                                maxWidth: 300.0,
                                 minWidth: 250.0,
                               ),
                               decoration: const BoxDecoration(

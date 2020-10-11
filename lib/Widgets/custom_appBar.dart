@@ -38,3 +38,24 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
+
+class CustomAppBarWithoutEdit extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.symmetric(
+        vertical: 5.0,
+        horizontal: 16.0,
+      ),
+      child: SafeArea(
+        child: Row(
+          children: [
+            Image.asset(Assets.travelfyLogo),
+
+          ],
+        ),
+      ),
+    );
+  }
+}

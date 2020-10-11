@@ -88,7 +88,7 @@
         "barStatus": "open",
         "covidTestLink": "",
         "covidTest": true,
-        "crossboarderWorker": true,
+        "crossborderWorker": true,
         "__collections__": {
           "countries": {
             "Belgium": {

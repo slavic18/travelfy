@@ -59,20 +59,7 @@ class HomePage extends StatelessWidget {
                                 color: Color.fromRGBO(42, 37, 52, 1)),
                           ),
                         ),
-                        //REMOVE LATER_______________________
-                        InkWell(
-                          child: Text("test"),
-                          onTap: () => {
-                            // routing to search page
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => searchResult(),
-                              ),
-                            ),
-                          },
-                        ),
-                        //REMOVE LATER_____________________________
+
                       ],
                     ),
                   )),

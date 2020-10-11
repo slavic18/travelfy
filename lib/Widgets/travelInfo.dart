@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:travelfy/models/search.dart';
 import 'package:travelfy/models/country.dart';
-
+import 'package:travelfy/pages/notification.dart';
 
 class TravelInfo extends StatelessWidget {
   @override
@@ -44,7 +44,9 @@ class TravelInfo extends StatelessWidget {
                               fontFamily: "Inter",
                               fontWeight: FontWeight.bold),
                         ),
-                      ],
+
+
+          ],
                     ),
                     SizedBox(
                       height: 15,
@@ -115,6 +117,7 @@ class TravelInfo extends StatelessWidget {
                               fontFamily: "Inter",
                               fontWeight: FontWeight.bold),
                         ),
+
                       ],
                     ),
                     Padding(

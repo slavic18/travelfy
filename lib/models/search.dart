@@ -68,7 +68,6 @@ class SearchModel extends ChangeNotifier {
       }
     });
 
-    print(stops);
 
 
     return stops;
@@ -155,6 +154,39 @@ class SearchModel extends ChangeNotifier {
         != null &&  l[from]['__collections__']['countries'][destination]  != null ) {
         countries.add(CountryData.fromJson(l[from]['__collections__']['countries'][destination]));
     }
+
+    return countries;
+  }
+  Future<List<CountryData>> getSearchResultByOrigin( ) async {
+
+
+    List<CountryData> countries = [];
+
+
+    String data = await rootBundle.loadString("data/mock.json");
+    Map<String, dynamic> l = json.decode(data)['__collections__']['countries'];
+
+    String from = this.getFrom();
+    print(from);
+
+        if(l[from] != null && l[from]['__collections__'] != null && l[from]['__collections__']['countries']
+            != null &&  l[from]['__collections__']['countries']  != null ) {
+          if(l[from]['__collections__']['countries'].length > 0)  {
+
+            for(int i = 0; i < l[from]['__collections__']['countries'].values.toList().length; i++) {
+              countries.add( CountryData.fromJson(l[from]['__collections__']['countries'].values.toList()[i]));
+            }
+          }
+          print(l[from]['__collections__']['countries'].length);
+          l[from]['__collections__']['countries']['Belgium'];
+          l[from]['__collections__']['countries']['Germany'];
+          l[from]['__collections__']['countries']['France'];
+          // l[from]['__collections__']['countries'].map((k,v) => {
+          //   l[from]['__collections__']['countries']
+          // });
+        }
+
+
 
     return countries;
   }
