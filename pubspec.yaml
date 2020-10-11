@@ -59,8 +59,8 @@ flutter:
     - images/start.svg
     - images/icon-close.svg
     - images/calendar.svg
-    - images/AIRPLAIN.png
     - data/mock.json
+    - images/AIRPLAIN.png
     - images/BIKE.png
     - images/CAR.png
     - images/MOTO.png
@@ -68,6 +68,11 @@ flutter:
     - images/warning.png
     - images/dangerous.png
     - images/good.png
+    - images/AIRPLAIN.svg
+    - images/BIKE.svg
+    - images/CAR.svg
+    - images/MOTO.svg
+    - images/TRAIN.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

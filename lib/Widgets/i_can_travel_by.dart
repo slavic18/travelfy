@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class iCanTravelBy extends StatelessWidget {
   @override
@@ -23,21 +24,11 @@ class iCanTravelBy extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image(
-              image: AssetImage('images/AIRPLAIN.png'),
-            ),
-            Image(
-              image: AssetImage('images/TRAIN.png'),
-            ),
-            Image(
-              image: AssetImage('images/CAR.png'),
-            ),
-            Image(
-              image: AssetImage('images/MOTO.png'),
-            ),
-            Image(
-              image: AssetImage('images/BIKE.png'),
-            ),
+            SvgPicture.asset('images/AIRPLAIN.svg'),
+            SvgPicture.asset('images/TRAIN.svg'),
+            SvgPicture.asset('images/CAR.svg'),
+            SvgPicture.asset('images/MOTO.svg'),
+            SvgPicture.asset('images/BIKE.svg'),
           ],
         ),
       ],

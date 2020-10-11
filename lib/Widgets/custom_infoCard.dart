@@ -35,13 +35,12 @@ class infoCard extends StatelessWidget {
         imageUrl: Assets.mask,
         color: Colors.blue,
       ));
-
-    } if (countryData.socialDistance == true) {
+    }
+    if (countryData.socialDistance == true) {
       regulations.add(Regulations(
         imageUrl: Assets.crowded,
         color: Colors.blue,
       ));
-
     }
 
     return Container(
@@ -102,58 +101,89 @@ class infoCard extends StatelessWidget {
                       SizedBox(
                         height: 5,
                       ),
-
                       Row(
                         children: [
                           countryData.transitAllowed == true
                               ? Container(
-                            decoration: BoxDecoration(
-                              color: Color.fromRGBO(219, 169, 1, 0.3),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: Padding(
-                              padding:
-                              const EdgeInsets.fromLTRB(12, 6, 12, 6),
-                              child: Text(
-                                "Transit Open",
-                                style: TextStyle(
-                                  fontSize: 9,
-                                  fontFamily: "Roboto",
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          )
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(219, 169, 1, 0.3),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(12, 6, 12, 6),
+                                    child: Text(
+                                      "Transit Open",
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontFamily: "Roboto",
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                )
                               : SizedBox.shrink(),
                           countryData.status == "RED"
                               ? Container(
-                            decoration: BoxDecoration(
-                              color: Color.fromRGBO(195, 11, 11, 0.3),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: Padding(
-                              padding:
-                              const EdgeInsets.fromLTRB(12, 6, 12, 6),
-                              child: Text(
-                                "Border closed",
-                                style: TextStyle(
-                                  fontSize: 9,
-                                  fontFamily: "Roboto",
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          )
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(195, 11, 11, 0.3),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(12, 6, 12, 6),
+                                    child: Text(
+                                      "Border closed",
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontFamily: "Roboto",
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                )
                               : SizedBox.shrink(),
-
                         ],
                       ),
-
                       SizedBox(
                         height: 10,
                       ),
+                      countryData.status == "RED"
+                          ? Container(
+                              decoration: BoxDecoration(
+
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5,2, 5, 2),
+                                    child: Icon(
+                                      Icons.vpn_lock,
+                                      color: Colors.red,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 6, 12, 6),
+                                    child: Text(
+                                      "Quarantine required",
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontFamily: "Roboto",
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          : SizedBox.shrink(),
                       Container(
                         height: 60,
                         width: 250,
@@ -191,14 +221,20 @@ class infoCard extends StatelessWidget {
                   ),
                 ],
               ),
-              countryData.status == "GREEN" ?
-                   Image.asset("images/good.png", width: 40,) :countryData.status == "YELLOW" ? Image.asset("images/warning.png", width: 40) : Image.asset("images/dangerous.png", width: 40),
+              countryData.status == "GREEN"
+                  ? Image.asset(
+                      "images/good.png",
+                      width: 40,
+                    )
+                  : countryData.status == "YELLOW"
+                      ? Image.asset("images/warning.png", width: 40)
+                      : Image.asset("images/dangerous.png", width: 40),
             ],
           ),
         ),
       ),
       width: double.infinity,
-      height: 192.0,
+      height: countryData.status == "RED" ? 215 : 192.0,
     );
   }
 }
