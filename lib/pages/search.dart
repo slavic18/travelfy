@@ -68,10 +68,12 @@ class SearchPage extends StatelessWidget {
 
             // date row
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 new SearchDateInput(
                     label: "From", type: SearchDateInput.TYPE_FROM),
-                Spacer(flex: 1),
+                Padding(padding: EdgeInsets.only(left:20)),
+
                 new SearchDateInput(
                     label: "Until", type: SearchDateInput.TYPE_TO),
               ],
@@ -176,8 +178,8 @@ class SearchDateInput extends StatelessWidget {
                   child: Row(children: [
                     Container(
                       constraints: BoxConstraints(
-                        maxWidth: 170.0,
-                        minWidth: 170.0,
+                        maxWidth: 140.0,
+                        minWidth: 140.0,
                       ),
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -258,6 +260,7 @@ class SearchInput extends StatelessWidget {
       );
     }).toList();
 
+
     String selectedCountry = country == "" ? "Select a country" : country;
     return Column(children: [
       type == "initial"
@@ -268,7 +271,7 @@ class SearchInput extends StatelessWidget {
                     padding: EdgeInsets.only(left: 10, right: 10),
                     child: Container(
                         constraints: BoxConstraints(
-                          maxWidth: 300.0,
+                          maxWidth: 280.0,
                           minWidth: 250.0,
                         ),
                         decoration: const BoxDecoration(
@@ -338,7 +341,7 @@ class SearchInput extends StatelessWidget {
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: Container(
                               constraints: BoxConstraints(
-                                maxWidth: 290.0,
+                                maxWidth: 260.0,
                                 minWidth: 250.0,
                               ),
                               decoration: const BoxDecoration(
@@ -413,7 +416,7 @@ class SearchInput extends StatelessWidget {
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: Container(
                               constraints: BoxConstraints(
-                                maxWidth: 290.0,
+                                maxWidth: 260.0,
                                 minWidth: 250.0,
                               ),
                               decoration: const BoxDecoration(
@@ -488,7 +491,7 @@ class SearchInput extends StatelessWidget {
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: Container(
                               constraints: BoxConstraints(
-                                maxWidth: 300.0,
+                                maxWidth: 280.0,
                                 minWidth: 250.0,
                               ),
                               decoration: const BoxDecoration(
